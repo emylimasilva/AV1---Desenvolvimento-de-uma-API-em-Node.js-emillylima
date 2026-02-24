@@ -1,0 +1,17 @@
+{
+  "name": "my-node-express-app",
+  "version": "1.0.0",
+  "description": "A simple Node.js application using Express.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
