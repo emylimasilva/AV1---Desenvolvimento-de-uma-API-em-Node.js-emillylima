@@ -1,11 +1,19 @@
 {
   "name": "api-estetica",
   "version": "1.0.0",
+  "description": "API simples em Node.js/Express para AV1 - primeira parte",
   "type": "module",
   "main": "src/server.js",
   "scripts": {
-    "dev": "node src/server.js"
+    "dev": "node src/server.js",
+    "start": "node src/server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emylimasilva/AV1---Desenvolvimento-de-uma-API-em-Node.js-emillylima.git"
+  },
+  "author": "Emilly",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.22.1"
   }
