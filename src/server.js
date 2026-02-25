@@ -1,32 +1,73 @@
 import express from "express";
-import { listarTarefas, adicionarTarefa } from "./dados.js";
 
 const app = express();
 const PORTA = 3000;
 
 app.use(express.json());
 
-app.get("/tarefas", (req, res) => {
-  const tarefas = listarTarefas();
-  return res.status(200).json(tarefas);
+const procedimentos = [
+  {
+    id: 1,
+    nome: "Limpeza de Pele",
+    area: "Rosto",
+    materiais: ["Gel de limpeza", "Máscara facial", "Extrator"],
+    valor: 120
+  },
+  {
+    id: 2,
+    nome: "Preenchimento Labial",
+    area: "Lábios",
+    materiais: ["Ácido hialurônico", "Anestésico tópico"],
+    valor: 900
+  },
+  {
+    id: 3,
+    nome: "Extensão de Cílios",
+    area: "Cílios",
+    materiais: ["Fios sintéticos", "Cola específica"],
+    valor: 250
+  },
+  {
+    id: 4,
+    nome: "Design de Sobrancelhas",
+    area: "Sobrancelhas",
+    materiais: ["Pinça", "Linha", "Henna"],
+    valor: 80
+  }
+];
+
+
+app.get("/procedimentos", (req, res) => {
+  res.status(200).json(procedimentos);
 });
+app.post("/procedimentos", (req, res) => {
+  const { nome, area, materiais, valor } = req.body;
 
-app.post("/tarefas", (req, res) => {
-  const { titulo } = req.body;
-
-  if (!titulo || typeof titulo !== "string" || titulo.trim() === "") {
-    return res.status(400).json({ erro: "Título é obrigatório e deve ser uma string não vazia." });
+  if (!nome || nome.trim() === "") {
+    return res.status(400).json({ erro: "Nome é obrigatório." });
   }
 
-  const nova = adicionarTarefa(titulo);
-  console.log(`Tarefa criada: "${nova.titulo}" (id: ${nova.id})`);
-  return res.status(201).json(nova);
-});
+  if (!area || area.trim() === "") {
+    return res.status(400).json({ erro: "Área é obrigatória." });
+  }
 
-app.get("/", (req, res) => {
-  res.status(200).json({ mensagem: "API Estética rodando. Use /tarefas para listar e criar." });
+  if (!valor || valor <= 0) {
+    return res.status(400).json({ erro: "Valor deve ser maior que zero." });
+  }
+
+  const novoProcedimento = {
+    id: procedimentos.length + 1,
+    nome,
+    area,
+    materiais: materiais || [],
+    valor
+  };
+
+  procedimentos.push(novoProcedimento);
+
+  res.status(201).json(novoProcedimento);
 });
 
 app.listen(PORTA, () => {
-  console.log(`Servidor rodando na porta ${PORTA} - Acesse http://localhost:${PORTA}`);
+  console.log(`Servidor rodando na porta ${PORTA}`);
 });
