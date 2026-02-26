@@ -1,8 +1,8 @@
-# API Estética (AV1) 
+# API Procedimentos de Estética (AV1)
 
-API simples em Node.js com Express para a primeira parte da AV1.
+API simples em Node.js com Express para gerenciar procedimentos de estética.
 
-O objetivo é demonstrar conceitos básicos: projeto Node, ES Modules, Express, rotas GET/POST e manipulação de dados em memória.
+Feito por Emilly Lima - Aluna do ensino médio
 
 Como executar
 
@@ -10,63 +10,41 @@ Como executar
 
    npm install
 
-2. Rode o servidor em modo desenvolvimento:
+2. Rode o servidor:
 
    npm run dev
 
-   ou
+Endpoints
 
-   npm start
+- GET / - retorna mensagem de status (200) e dados do autor
+- GET /procedimentos - lista todos os procedimentos (200)
+- GET /procedimentos/:id - retorna procedimento por id (200) ou 404 se não existir
+- POST /procedimentos - cria novo procedimento (201) ou 400 em caso de validação
+- DELETE /procedimentos/:id - remove procedimento (200) ou 404 se não existir
+- GET /sobre - informações do aluno
 
-EndPoints
+Exemplos (curl)
 
-- GET / - retorna mensagem simples com status da API
-- GET /tarefas - lista todas as tarefas (status 200)
-- POST /tarefas - cria nova tarefa. Exemplo de corpo JSON:
+- Listar:
 
-  {
-    "titulo": "Minha nova tarefa"
-  }
+  curl -i http://localhost:3000/procedimentos
 
-Validações
+- Criar:
 
-- POST /tarefas exige o campo 'titulo' como string não vazia. Em caso de falta ou valor inválido, retorna 400 com JSON de erro.
-
-O que aprendi
-
-- Como inicializar um projeto Node com ES Modules
-- Uso básico do Express (app, rotas, middleware express.json)
-- Manipular arrays em memória e validar entrada do cliente
-
-Observações
-
-- Os dados ficam em memória: reiniciar o servidor reseta o array.
-- Próxima etapa (AV2) vai evoluir essa API; por isso mantive o código simples e bem separado.
-
-
-Exemplos de uso (curl)
-
-- Listar tarefas (GET):
-
-  curl -i http://localhost:3000/tarefas
-
-- Criar tarefa (POST):
-
-  curl -i -X POST http://localhost:3000/tarefas \
+  curl -i -X POST http://localhost:3000/procedimentos \
     -H "Content-Type: application/json" \
-    -d '{"titulo": "Estudar para AV1"}'
+    -d '{"nome":"Peeling","area":"Rosto","materiais":["Peeling químico"],"valor":150}'
 
-Sugestões de commits
+Repositório
 
-Use commits pequenos e descritivos. Exemplos:
+https://github.com/emylimasilva/AV1---Desenvolvimento-de-uma-API-em-Node.js-emillylima
 
-- "inicial: criar estrutura do projeto"
-- "adicionar: implementar GET /tarefas"
-- "adicionar: implementar POST /tarefas e validação"
-- "documentacao: adicionar README com instrucoes de execucao"
+Critérios atendidos
 
-Boas práticas ao commitar:
-
-- Faça commits por mudança lógica (não agrupe várias tarefas diferentes em um único commit).
-- Use mensagens curtas e no imperativo, explicando a mudança.
+- Node com ES Modules
+- Express instalado e usado
+- Rotas GET, POST e DELETE implementadas
+- Validação básica no POST
+- Dados em memória
+- Uso adequado de status HTTP
 

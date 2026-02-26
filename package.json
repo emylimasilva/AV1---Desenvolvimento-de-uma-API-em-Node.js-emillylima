@@ -1,11 +1,15 @@
 {
   "name": "api-estetica",
   "version": "1.0.0",
-  "description": "API de procedimentos de estética - AV1",
   "type": "module",
-  "main": "src/server.js",
+  "author": "Emilly Lima",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emylimasilva/AV1---Desenvolvimento-de-uma-API-em-Node.js-emillylima.git"
+  },
   "scripts": {
-    "dev": "node src/server.js"
+    "dev": "node src/server.js",
+    "start": "node src/server.js"
   },
   "dependencies": {
     "express": "^4.22.1"
